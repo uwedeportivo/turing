@@ -1,0 +1,54 @@
+cabal-version:      3.0
+name:               turing
+version:            0.1.0.0
+license:            MIT
+license-file:       LICENSE
+author:             Uwe Hoffmann
+maintainer:         uwedeportivo@vivaldi.net
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+
+common warnings
+    ghc-options: -Wall
+
+library
+    import:           warnings
+    exposed-modules:  Turing
+    build-depends:    base ^>=4.19.0.0, turing-internal
+    hs-source-dirs:   src
+    default-language: Haskell2010
+
+library turing-internal
+    import:           warnings
+    exposed-modules:  TuringInternal
+    build-depends:    base ^>=4.19.0.0, array
+    hs-source-dirs:   internal
+    default-language: Haskell2010
+
+library examples
+    ghc-options: -Wno-unused-imports
+    exposed-modules:  Examples
+    build-depends:    base ^>=4.19.0.0, array, turing-internal, turing
+    hs-source-dirs:   examples
+    default-language: Haskell2010
+
+executable turing
+    import:           warnings
+    main-is:          Main.hs
+    build-depends:
+        base ^>=4.19.0.0,
+        turing
+    hs-source-dirs:   app
+    default-language: Haskell2010
+
+test-suite turing-test
+    import:           warnings
+    default-language: Haskell2010
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          Main.hs
+    build-depends:
+        base ^>=4.19.0.0,
+        turing,
+        turing-internal,
+        hspec
