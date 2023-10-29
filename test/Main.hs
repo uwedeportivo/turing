@@ -42,7 +42,7 @@ challenge4Rules = (createReplaceBlock 0 'x' 3 12) ++
        (createReplaceBlock 12 'y' 15 10) ++
        (createReplaceBlock 15 'z' 18 10) ++
        (createReplaceBlock 18 'y' 21 26) ++
-       (createReplaceBlock 21 'z' 21 10) ++
+       (createReplaceBlock 21 'z' 18 10) ++
        (createReplaceBlock 26 'z' 29 10) ++
        (createHaltBlock 29 'y')
 
@@ -68,6 +68,9 @@ challenge4Spec = describe "challenge4Spec" $ do
     executeTest "YZZ" `shouldBe` 'y'
   it "Z" $ do
     executeTest "Z" `shouldBe` 'n'
+  it "ZZZYYXYYZZZ" $ do
+    executeTest "ZZZYYXYYZZZ" `shouldBe` 'y'
+
 
 main :: IO ()
 main = hspec $ do
